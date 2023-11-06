@@ -1,0 +1,31 @@
+Certainly, I'd be happy to explain the code line by line:
+
+1. `import nltk`: This line imports the Natural Language Toolkit (NLTK) library, which is a popular Python library for working with natural language processing tasks.
+
+2. `from nltk.corpus import stopwords`: This line specifically imports the `stopwords` corpus from the NLTK library. Stopwords are common words like "the," "and," "is," etc., that are often removed from text during text processing because they don't carry significant meaning.
+
+3. `from nltk.stem import PorterStemmer`: This line imports the `PorterStemmer` class from the NLTK library. A stemmer is a tool used to reduce words to their base or root form. The Porter Stemmer is a widely used stemmer in natural language processing.
+
+4. `from nltk.tokenize import word_tokenize`: This line imports the `word_tokenize` function from NLTK, which is used for splitting text into individual words.
+
+5. `nltk.download('punkt')`: This line is used to download the Punkt tokenizer models, which are necessary for word tokenization.
+
+6. `nltk.download('stopwords')`: This line is used to download the stopwords corpus, which includes a list of common English stopwords.
+
+7. `document = """Engineering is 4 year long gap to decide what to do in life."""`: Here, you define a multi-line string called `document` that contains a sample text. This text will be preprocessed in the subsequent lines.
+
+8. `words = word_tokenize(document)`: You tokenize the `document` string into individual words using the `word_tokenize` function. This line breaks the text into a list of words.
+
+9. `stop_words = set(stopwords.words('english'))`: You create a set of English stopwords using the `stopwords.words('english')` function, which provides a list of common English stopwords.
+
+10. `filtered_words = [word for word in words if word.lower() not in stop_words]`: This line creates a list called `filtered_words` by iterating through the `words` list and checking if each word (converted to lowercase) is not in the `stop_words` set. This step filters out common stopwords from the tokenized words.
+
+11. `stemmer = PorterStemmer()`: You initialize a `PorterStemmer` object, which will be used to perform stemming on the words in the `filtered_words` list.
+
+12. `stemmed_words = [stemmer.stem(word) for word in filtered_words]`: This line applies stemming to each word in the `filtered_words` list using the `PorterStemmer` object and stores the stemmed words in the `stemmed_words` list.
+
+13. `preprocessed_text = ' '.join(stemmed_words)`: This line joins the stemmed words in the `stemmed_words` list into a single string, separating them with spaces, and stores the result in the `preprocessed_text` variable. This text is now the preprocessed version of the original document.
+
+14. `print("Original Text:", document)`: This line prints the original text stored in the `document` variable.
+
+15. `print("\nPreprocessed Text:", preprocessed_text)`: Finally, this line prints the preprocessed text stored in the `preprocessed_text` variable, which has had stopwords removed and words stemmed. The `\n` is used to insert a line break before the preprocessed text for readability.

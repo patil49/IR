@@ -1,0 +1,29 @@
+Certainly, I can explain the code line by line:
+
+1. `from collections import defaultdict`: This line imports the `defaultdict` class from the `collections` module. A `defaultdict` is a dictionary-like object that provides a default value for keys that do not exist.
+
+2. `documents = { ... }`: This block defines a dictionary called `documents` where each key represents a document ID, and the associated value is a string representing the content of that document.
+
+3. `inverted_index = defaultdict(list)`: This line initializes an `inverted_index` dictionary as a `defaultdict` with an empty list as the default value. This dictionary will be used to create an inverted index, mapping each unique word (token) to a list of document IDs where that word appears.
+
+4. `for doc_id, text in documents.items():`: This line starts a loop that iterates over each document in the `documents` dictionary, where `doc_id` is the document ID, and `text` is the content of the document.
+
+5. `for token in text.lower().split():`: Inside the loop, this line further iterates over each word (token) in the document's content. It converts the word to lowercase and splits the text into words using spaces.
+
+6. `inverted_index[token].append(doc_id)`: For each `token` found in a document, this line appends the `doc_id` to the list associated with that `token` in the `inverted_index`. This effectively builds the inverted index by mapping words to the documents where they appear.
+
+7. `query = input("Enter your query : ")`: This line prompts the user to enter a query and stores the input in the `query` variable.
+
+8. `matching_doc_ids = set(inverted_index.get(query.lower(), []))`: This line looks up the `query` (converted to lowercase) in the `inverted_index`. If the `query` is found in the index, it retrieves the list of document IDs where the query word appears. If not found, it defaults to an empty list. The results are converted into a set to remove duplicate document IDs.
+
+9. `if matching_doc_ids:`: This conditional checks if there are matching document IDs for the query. If there are matches, it enters the block.
+
+10. `for doc_id in matching_doc_ids: ...`: Inside the conditional block, this loop iterates over the matching document IDs and prints the document content associated with those IDs.
+
+11. `print(f"Document {doc_id}: {documents[doc_id]}")`: This line prints the document ID and its content.
+
+12. `else: ...`: If there are no matching documents, this block is executed.
+
+13. `print(f"No matching documents found for the query: {query}")`: This line prints a message indicating that no matching documents were found for the entered query.
+
+The code essentially builds an inverted index to quickly look up documents containing specific words and allows users to query for documents containing particular terms. It's a basic information retrieval system.
