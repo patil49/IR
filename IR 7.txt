@@ -1,0 +1,22 @@
+from collections import defaultdict
+
+documents = {
+    1: "Engineering is a myth just like democracy does",
+    2: "We sell different parts of ourselves",
+    3: "Terrorism is fun unless it's not happening near our house",
+    4: "Ohh dear"
+}
+
+inverted_index = defaultdict(list)
+for doc_id, text in documents.items():
+    for token in text.lower().split():
+        inverted_index[token].append(doc_id)
+
+query = input("Enter your query : ")
+matching_doc_ids = set(inverted_index.get(query.lower(), []))
+
+if matching_doc_ids:
+    for doc_id in matching_doc_ids:
+        print(f"Document {doc_id}: {documents[doc_id]}")
+else:
+    print(f"No matching documents found for the query: {query}")

@@ -1,0 +1,22 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+
+nltk.download('punkt')
+nltk.download('stopwords')
+-------------------------------
+
+document = """Engineering is 4 year long gap to decide what to do in life."""
+---------------------------------
+
+words = word_tokenize(document)
+stop_words = set(stopwords.words('english'))
+filtered_words = [word for word in words if word.lower() not in stop_words]
+stemmer = PorterStemmer()
+stemmed_words = [stemmer.stem(word) for word in filtered_words]
+preprocessed_text = ' '.join(stemmed_words)
+----------------------------------------
+
+print("Original Text:", document)
+print("\nPreprocessed Text:", preprocessed_text)

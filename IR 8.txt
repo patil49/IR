@@ -1,0 +1,26 @@
+import numpy as np
+import pandas as pd
+from pgmpy.estimators import MaximumLikelihoodEstimator as mle
+from pgmpy.models import BayesianModel as bm
+from pgmpy.inference import VariableElimination as ve
+
+
+hd = pd.read_csv('heart.csv')
+
+
+model = bm([('age', 'target'), ('sex', 'target'), ('exang', 'target'),
+                      ('cp', 'target'), ('target', 'restecg'), ('target', 'chol')])
+
+
+model.fit(hd, estimator= me)
+
+
+HeartDiseaseTestInfer = ve(model)
+
+
+q1 = HeartDiseaseTestInfer.query(variables=['target'], evidence={'restecg': 1})
+q2 = HeartDiseaseTestInfer.query(variables=['target'], evidence={'cp': 2})
+
+
+print(q1)
+print(q2)
